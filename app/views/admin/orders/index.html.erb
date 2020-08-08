@@ -1,0 +1,33 @@
+<div class="container">
+    <h2 class="margin-tb">注文履歴一覧</h2>
+    <table>
+        <thead>
+            <tr class="table-active admin-order-index-tr">
+                <th>購入日時</th>
+                <th>購入者</th>
+                <th>注文個数</th>
+                <th>注文ステータス</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @orders.each do |order| %>
+            <tr class="admin-order-index-tr">
+                <td class="admin-order-index-td">
+                    <%= link_to admin_order_path(order) do %>
+                        <%= l order.created_at %>
+                    <%end%>
+                </td>
+                <td class="admin-order-index-td">
+                    <%= order.end_user.last_name_kanji %><%= order.end_user.first_name_kanji %>
+                </td>
+                <td class="admin-order-index-td">
+                    <%= order.total_amount %>
+                </td>
+                <td class="admin-order-index-td">
+                    <%= order.preparation_status_i18n %>
+                </td>
+            </tr>
+            <%end%>
+        </tbody>
+    </table>
+</div>

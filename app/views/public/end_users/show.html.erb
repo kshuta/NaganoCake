@@ -1,0 +1,58 @@
+<div class="container">
+    <h1>マイページ</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <td class="label">登録情報</td>
+                <td><%= link_to "編集する", edit_end_users_path, class: "btn btn-primary margin-rl"%></td>
+                <td><%= link_to "パスワードを変更する", edit_end_user_password_path, class: "btn btn-primary"%></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- table for user info -->
+    <table class="mypage-table">
+        <tbody>
+            <tr class="mypage-tr">
+                <td class="table-active mypage-td">氏名</td>
+                <td class="mypage-td"><%= @user.last_name_kanji%> <%= @user.first_name_kanji%></td>
+            </tr>
+            <tr class="mypage-tr">
+                <td class="table-active mypage-td">カナ</td>
+                <td class="mypage-td"><%= @user.last_name_kana%> <%= @user.first_name_kana%></td>
+            </tr>
+            <tr class="mypage-tr">
+                <td class="table-active mypage-td">郵便番号</td>
+                <td class="mypage-td"><%= @user.zip_code %></td>
+            </tr>
+            <tr class="mypage-tr">
+                <td class="table-active mypage-td">住所</td>
+                <td class="mypage-td"><%= @user.address %></td>
+            </tr>
+            <tr class="mypage-tr">
+                <td class="table-active mypage-td">電話番号</td>
+                <td class="mypage-td"><%= @user.phone_number%></td>
+            </tr>
+            <tr class="mypage-tr">
+                <td class="table-active mypage-td">メールアドレス</td>
+                <td class="mypage-td"><%= @user.email %></td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <!-- --------------- -->
+
+    <table>
+        <tr>
+            <td>配送先</td>
+            <td><%= link_to "一覧を見る", end_users_path, class: "btn btn-primary margin-rl"%></td>
+        </tr>
+        <tr>
+            <td>注文履歴</td>
+            <td><%= link_to "一覧を見る", end_users_path, class: "btn btn-primary margin-rl"%></td> 
+        </tr>
+    </table>
+
+</div>

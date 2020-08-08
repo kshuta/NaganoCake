@@ -1,0 +1,27 @@
+<div class="container">
+    <h2> 会員一覧　</h2>
+    <table class="enduser-index-table">
+        <thead>
+            <tr class="table-active enduser-index-tr">
+                <th class="enduser-index-th" >会員ID</th>
+                <th class="enduser-index-th" colspace="2">氏名</th>
+                <th class="enduser-index-th" colspace="2">メールアドレス</th>
+                <th class="enduser-index-th" colspace="2">ステータス</th>
+            </tr>
+            <% @users.each do |user| %>
+            <tr class="enduser-index-tr">
+                <td><%= user.id %></th>
+                <td><%= user.last_name_kanji%><%= user.first_name_kanji%></th>
+                <td><%= user.email %></th>
+                <% if !user.is_unregistered %>
+                    <td>有効</th>
+                <% else %>
+                    <td>退会済</th>
+                <% end %>
+            </tr>
+            <%end%>
+            
+        </thead>
+    </table>
+
+</div>

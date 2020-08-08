@@ -1,0 +1,81 @@
+<div class="container">
+    <h2>注文履歴詳細</h2>
+    <table>
+        <tbody>
+            <tr>
+                <td><h5>購入者</h5></td>
+                <td><%= @order.end_user.last_name_kanji %> <%= @order.end_user.first_name_kanji%></td>
+            </tr>
+            <tr>
+                <td><h5>配送先</h5></td>
+                <td><%= @order.shipping_information %></td>
+            </tr>
+            <tr>
+                <td><h5>支払方法</h5></td>
+                <td><%= @order.payment_method_i18n %></td>
+            </tr>
+
+            <tr>
+                <td><h5>注文ステータス</h5></td>
+                <td>
+                <%= form_with model: @order, url: admin_order_path(@order) do |f|%>
+
+                    <%= f.select :preparation_status, Order.preparation_statuses.keys.map {|k| [Order.preparation_statuses_i18n[k], Order.preparation_statuses[k]]}, :selected => Order.preparation_statuses[@order.preparation_status] %>
+                
+                    <%= f.submit "更新", class: "btn btn-primary" %>
+                <%end%>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <div class="row">
+
+        <table class="margin-tb col-8">
+            <thead>
+                <tr class="table-active admin-order-show-tr">
+                    <th>商品名</th>
+                    <th>単価（税込み）</th>
+                    <th>数量</th>
+                    <th>小計</th>
+                    <th>制作ステータス</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @order_details.each do |order_detail| %>
+                <tr>
+                    <td class="admin-order-show-td"><%= order_detail.item.name %></td>
+                    <td class="admin-order-show-td"><%= order_detail.taxed_price %></td>
+                    <td class="admin-order-show-td"><%= order_detail.amount%></td>
+                    <td class="admin-order-show-td"><%= order_detail.taxed_price * order_detail.amount %></td>
+                    <td class="admin-order-show-td">
+                        <%= form_with model: order_detail, url: admin_order_details_path(@order) do |f|%> 
+                            <%= f.select :production_status, OrderDetail.production_statuses.keys.map{ |k| [OrderDetail.production_statuses_i18n[k], OrderDetail.production_statuses[k]]}, :selected => OrderDetail.production_statuses[order_detail.production_status] %>
+                            <%= f.hidden_field :id, value: order_detail.id %>
+                            <%= f.submit "更新", class: "btn btn-primary"%>
+                        <%end%>
+                    </td>
+                </tr>
+                <%end%>
+            </tbody>
+        </table>
+        <table class="col-4">
+            <tbody>
+                <tr>
+                    <td><h5>商品合計</h5></td>
+                    <td> <%= @order.total_price %> </td>
+                </tr>
+                <tr>
+                    <td><h5>送料</h5></td>
+                    <td><%= @order.shipping_fee %> </td>
+                </tr>
+                <tr>
+                    <td><h5>請求金額合計</h5></td>
+                    <td><h6><%= @order.total_price + @order.shipping_fee %></h6></td>
+                <tr>
+            </tbody>
+    </div>
+</div>
+        
+

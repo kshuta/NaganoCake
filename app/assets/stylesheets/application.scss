@@ -1,0 +1,246 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_self
+ */
+ @import "bootstrap";
+ * {
+     padding: 0;
+     margin: 0;
+     box-sizing: border-box;
+ }
+
+ .clearfix {
+     content: "";
+     display: block;
+     clear: both;
+ }
+
+ ul {
+     list-style-type: none;
+ }
+
+.margin-rl {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.margin-tb {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.label {
+    font-weight: 700;
+    font-size: 25px;
+}
+
+.inlined {
+    display: inline;
+}
+
+.error-explanation {
+    border: 1px solid red;
+    text-decoration: red;
+}
+
+
+
+/* end_user マイページ */
+
+.mypage-table {
+    border: 1px solid #000;
+    margin: 30px 0;
+}
+
+.mypage-td {
+    min-width: 400px;
+    height: 40px;
+    border: 1px solid #000;
+}
+
+.table-active {
+    min-width: 150px;
+}
+
+
+/* end_user 退会確認画面　*/
+.confirm_unregister_container {
+    margin: 0 auto;
+    margin-top: 100px;
+    width: 400px;
+    text-align: center;
+    
+    
+}
+
+.confirm_unregister_table {
+    width: 300px;
+    min-width: 100px;
+    margin: 0 auto;
+}
+
+
+
+
+
+/* admin end_user 一覧画面　*/
+.enduser-index-table {
+    height: 40px;
+    width: auto;
+    margin: 0 auto;
+}
+
+.enduser-index-tr {
+    border-bottom: 1px solid #000;
+}
+
+.enduser-index-th {
+    min-width: 250px;
+}
+
+/* admin genre一覧 */
+.admin-genre-table-form {
+    margin: 30px;
+}
+.admin-genre-td-form {
+    min-width: 75px;
+    height: 10px;
+}
+
+.admin-genre-td {
+    border-bottom: 1px solid #000;
+    height: 15px;
+    min-width: 100px;
+}
+
+
+/* admin items一覧 */
+.admin-items-th {
+    border-bottom: 1px solid #000;
+    height: 40px;
+    min-width: 200px;
+}
+
+.admin-items-td {
+    border-bottom: 1px solid #000;
+    height: 40px;
+}
+
+.admin-items-table {
+    width: auto;
+    margin: 10px auto;
+}
+
+/* end-user items一覧 */ 
+.item-count {
+    font-size: 16px;
+    font-weight: 100;
+}
+
+.item-card {
+    width: 250px;
+    border: 1px solid #DCDCDC;
+    margin: 15px;
+}
+
+.th-img {
+    min-width: 200px;
+    height: 150px;
+}
+.item-img {
+    width: 150px;
+    height: 125px;
+    object-fit: contain;
+}
+
+/* end-user item詳細 */  
+.item-show-item-id {
+    display: none;
+}
+
+
+/* end-user cart-item一覧*/  
+.public-cart-item-table {
+    border: 1px solid #000
+}
+
+.public-cart-item-th {
+    min-width: 150px;
+    border: 1px solid #000
+}
+
+.public-cart-item-td {
+    border: 1px solid #000;
+    padding: 10px;
+}
+
+.cart-item-amount-input {
+    width: 50px;
+}
+
+.cart-item-img {
+    width: 100px;
+    height: 75px;
+    object-fit: contain;
+}
+
+.cart-item-subtotal-table {
+    border: 1px solid #000;
+}
+.cart-item-subtotal-td {
+    border: 1px solid #000;
+    min-width: 100px;
+    height: 10px;
+    padding: 10px
+}
+
+/* end-user order confirm */   
+.order-confirm-table {
+    border: 1px solid #000;
+}
+.order-confirm-th {
+    border: 1px solid #000;
+    min-width: 150px;
+}
+.order-confirm-td {
+    border: 1px solid #000;
+    min-width: 100px;
+    padding: 10px
+}
+
+/* end-user order done */   
+.done-container {
+    width: 500px;
+    margin: 25% auto;
+}
+
+
+/* admin order index */  
+.admin-order-index-tr {
+    border: 1px solid #000;
+}
+.admin-order-index-td {
+    min-width: 200px;
+    height: 15px;
+    padding: 10px;
+}
+
+/* admin order show */  
+.admin-order-show-tr {
+    border: 1px solid
+}
+.admin-order-show-td {
+    min-width: 200px;
+    height: 15px;
+    padding: 10px; 
+}

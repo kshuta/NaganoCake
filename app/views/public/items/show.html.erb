@@ -1,0 +1,39 @@
+<div class="container margin-tb">
+    <div class="row">
+        <div class="col-3 margin-tb">
+            <%= render 'sidebar', genres: @genres %>
+        </div>
+
+        <div class="col-9">
+            <table>
+                <tbody>
+                    <tr>
+                        <td><%= attachment_image_tag @item, :image, format: "jpeg", fallback: "fallback_image.jpg", class: "item-img" %></td>
+                        <td>
+                            <table>
+                                <tbody>
+                                    <tr><td><h2><%= @item.name %></h2></td></tr>
+                                    <tr><td><p><%= @item.description%></p></td></tr>
+                                    <tr><td><%= (@item.untaxed_price * 1.08).round(0)%>円(税込み)</td></tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <%= form_with model: @new_cart_item, url: cart_items_path do |f|%>
+            <table>
+                <tbody>
+                    <tr>
+                        <td><%= f.number_field :item_id, value: @item.id, readonly: true, class: "item-show-item-id" %></td>
+                        <td><%= f.number_field :amount, value: 1, min: 1%></td>
+                        <td><%= f.submit "カートに入れる"%></td>
+                    </tr>
+                </tbody>
+            </table>
+            <%end%>
+                        
+        </div>
+    </div>
+
+</div>

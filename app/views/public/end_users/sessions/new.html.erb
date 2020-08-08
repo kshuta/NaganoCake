@@ -1,0 +1,42 @@
+
+
+
+<div class="container">
+  <h4>会員の方はこちらからログイン</h4>
+
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <%= render "public/end_users/shared/error_messages", resource: resource %>
+          <div class="row">
+          <div class="col-9 container">
+            <!-- メールアドレス --> 
+            <div class="row">
+              <div class="col">
+                メールアドレス
+              </div>
+              <div class="col">
+                <%= f.email_field :email, class: "form-control" %>
+              </div>
+            </div>
+
+            <!-- パスワード -->
+            <div class="row">
+              <div class="col">
+                パスワード（６文字以上）
+              </div>
+              <div class="col">
+                <%= f.password_field :password, class: "form-control" %>
+              </div>
+            </div>
+
+            <div class="actions">
+              <%= f.submit "Sign up", class: "btn btn-primary m-auto col-6" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="container">
+      <h4>登録がお済みでない方</h4>
+      <p><%= link_to "こちら", new_end_user_registration_path %> から新規登録を行ってください。</p>
+
+</div>

@@ -1,0 +1,38 @@
+<div class="container">
+    <%= form_with model: @new_item, url: admin_items_path do |f| %>
+    <table>
+        <tbody>
+            <tr>
+                <td><%= f.attachment_field :image %></td>
+                <td>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td><%= f.label "商品名" %></td>
+                                <td><%= f.text_field :name %></td>
+                            </tr>
+                            <tr>
+                                <td><%= f.label "商品説明" %></td>
+                                <td><%= f.text_area :description %></td>
+                            </tr>
+                            <tr>
+                                <td><%= f.label "ジャンル" %></td>
+                                <td><%= f.collection_select(:genre_id, @genres, :id, :name, include_blank: :true)%>
+                            </tr>
+                            <tr>
+                                <td><%= f.label "税抜き価格" %></td>
+                                <td><%= f.number_field :untaxed_price %>円</td>
+                            </tr>
+                            <tr>
+                                <td><%= f.label "販売ステータス"%></td>
+                                <td><%= select_tag(:is_in_stock, options_for_select([['販売中', true], ["販売停止中", false]])) %>
+                        </tbody>
+                    </table>
+                </td>
+        </tbody>
+    </table>
+    <div class="d-flex flex-row-reverse">
+        <%= f.submit "新規登録", class: "btn btn-primary p-2"%>
+    </div>
+    <%end%>
+</div>

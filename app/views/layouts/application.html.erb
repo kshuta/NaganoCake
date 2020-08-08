@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NaganoCake</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/c747c50be4.js" crossorigin="anonymous"></script>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <% if !admin_signed_in? %>
+    <%= link_to "Nagano Cake", root_path, class: "navbar-brand"%>
+  <%else%>
+    <%= link_to "管理者 Nagano Cake", admin_top_path, class: "navbar-brand"%>
+  <%end%>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+    <ul class="navbar-nav">
+    <% if !end_user_signed_in? && !admin_signed_in? %>
+      <li class="nav-item">
+        <%= link_to "商品一覧", items_path, class: "nav-link"%> 
+      </li>
+      <li class="nav-item">
+        <%= link_to "新規登録", new_end_user_registration_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item'">
+        <%= link_to "ログイン", new_end_user_session_path, class: "nav-link" %>
+      </li>
+    <% elsif end_user_signed_in? %>
+      <li class="nav-item">
+        ようこそ, <%= current_end_user.last_name_kanji %> さん!
+      </li>
+      <li class="nav-item">
+        <%= link_to "マイページ", end_users_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "商品一覧", items_path, class: "nav-link"%> 
+      </li>
+      <li class="nav-item">
+        <%= link_to "カート", cart_items_path, class: "nav-link"%> 
+      </li>
+      <li class="nav-item'">
+        <%= link_to "ログアウト", destroy_end_user_session_path, class: "nav-link", method: :delete %>
+      </li> 
+    <% else %>
+      <li class="nav-item">
+       <%= link_to "商品一覧", admin_items_path, class: "nav-link"%> 
+      </li>
+      <li class="nav-item">
+       <%= link_to "会員一覧", admin_end_users_path, class: "nav-link"%> 
+      </li>
+      <li class="nav-item">
+       <%= link_to "注文一覧", admin_orders_path, class: "nav-link"%> 
+      </li>
+      <li class="nav-item">
+        <%= link_to "ジャンル一覧", admin_genres_path, class: "nav-link"%>  
+      </li>
+      <li class="nav-item'">
+        <%= link_to "ログアウト", destroy_admin_session_path, class: "nav-link", method: :delete %>
+      </li> 
+    </ul>
+      <%= form_tag(admin_item_search_path, :method => 'get') do%>
+        <%= text_field_tag :search%>
+        <%= button_tag type: "submit", class: "btn" do %>
+          <i class="fas fa-search"></i>
+        <%end%>
+      <%end%>
+    <%end%>
+  </div>
+</nav>
+
+    <%= yield %>
+  </body>
+</html>

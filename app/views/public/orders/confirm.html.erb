@@ -1,0 +1,85 @@
+<div class="container">
+    <h3>注文情報確認</h3>
+    <div class="row">
+        <table class="order-confirm-table col-8">
+            <thead>
+                <tr class="table-active">
+                    <th class="order-confirm-th">商品名</th>
+                    <th class="order-confirm-th">単価（税込）</th>
+                    <th class="order-confirm-th">数量</th>
+                    <th class="order-confirm-th">小計</th>
+                <tr>
+            </thead>
+            <tbody>
+                <% subtotals = [] %>
+                <% @cart_items.each do |cart_item| %>
+                <% taxed_price = (cart_item.item.untaxed_price * 1.08).round(0)%>
+                <tr>
+                    <td class="order-confirm-td">
+                        <table>
+                            <tr>
+                                <td>
+                                    <%= attachment_image_tag cart_item.item, :image, format: "jpeg", fallback: "fallback_image.jpg", class: "cart-item-img"%>
+                                </td>
+                                <td>
+                                    <%= cart_item.item.name %>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td class="order-confirm-td">
+                        <%= taxed_price %>
+                    </td>
+                    <td class="order-confirm-td">
+                        <%= cart_item.amount %>
+                    </td>
+                    <td class="order-confirm-td">
+                        <% subtotal = taxed_price * cart_item.amount%>
+                        <%= subtotal %>
+                        <% subtotals.push(subtotal)%>
+                    </td>
+                </tr>
+                <%end%>
+            </tbody>
+        </table>
+        <table class="order-confirm-table col-3 margin-rl">
+            <tbody>
+                <tr>
+                    <td class="order-confirm-td table-active">送料</td>
+                    <td class="order-confirm-td"><%= @new_order.shipping_fee %></td>
+                </tr>
+                <tr>
+                    <td class="order-confirm-td table-active">商品合計</td>
+                    <td class="order-confirm-td"><%= subtotals.sum %></td>
+                </tr>
+                <tr>
+                    <td class="order-confirm-td table-active">請求金額</td>
+                    <td class="order-confirm-td"><%= @new_order.shipping_fee + subtotals.sum %></td>
+                </tr>
+            </body>
+        </table>
+    </div>
+    <table>
+        <tbody>
+            <tr>
+                <td><h4>支払方法</h4></td>
+                <td><%= @new_order.payment_method_i18n %></td>
+            </tr>
+            <tr>
+                <td><h4>お届け先</h4></td>
+                <td><%= @new_order.zip_code %> <%= @new_order.address %> <%= @new_order.recipient_name%></td>
+            </tr>
+        </tbody>
+    </table>
+    <%= form_for @new_order do |f| %>
+    <div class="d-flex justify-content-center">
+        <%= f.hidden_field :zip_code %>
+        <%= f.hidden_field :address %>
+        <%= f.hidden_field :recipient_name %>
+        <%= f.hidden_field :payment_method %>
+        <%= f.submit "購入を確定する", class: "btn btn-success", data: {confirm: "購入を確定しますか？"}%>
+    </div>
+    <%end%>
+</div> 
+
+

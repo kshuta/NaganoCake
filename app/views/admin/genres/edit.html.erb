@@ -1,0 +1,22 @@
+<div class="container">
+    <h2>ジャンル一覧・追加</h2>
+    <%= form_with model: @genre, url: admin_genre_path do |f|%>
+    <table class="admin-genre-table-form">
+        <tbody>
+            <tr>
+                <td class="admin-genre-td-form"><strong>ジャンル</strong></td>
+                <td class="admin-genre-td-form"><%= f.text_field :name%></td>
+                <% if @genre.is_activated %>
+                    <td class="admin-genre-td-form"><%= radio_button_tag(:is_activated, "true", :checked) %> 有効</td>
+                    <td class="admin-genre-td-form"><%= radio_button_tag(:is_activated, "false") %> 無効</td>
+                <%else%>
+                    <td class="admin-genre-td-form"><%= radio_button_tag(:is_activated, "true") %> 有効</td>
+                    <td class="admin-genre-td-form"><%= radio_button_tag(:is_activated, "false", :checked) %> 無効</td>
+                <%end%>
+
+                <td class="admin-genre-td-form"><%= f.submit "追加", class: "btn btn-primary" %></td>
+            </td>
+        </tbody>
+    </table>
+    <%end%>                
+</div>

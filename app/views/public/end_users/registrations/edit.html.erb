@@ -1,0 +1,124 @@
+
+
+
+<div class="container">
+  <h4>会員情報</h4>
+
+      <%= form_for(current_end_user,url: end_user_registration_path, method: :put) do |f| %>
+        <%= render "public/end_users/shared/error_messages", resource: resource %>
+        <table class="login-table">
+          <!-- 名前 -->  
+          <tr>
+            <td colspan="4" class="login-td-title">
+              名前
+            </td>
+            <td>
+              <%= f.label "（姓）"%>
+            </td>
+            <td colspan="4">
+              <%= f.text_field :last_name_kanji, class: "" %>
+            </td>
+            <td>
+              <%= f.label "（名）"%>
+            </td>
+            <td colspan="4">
+              <%= f.text_field :first_name_kanji, class: "" %>
+            </td>
+          </tr>
+          
+          <!-- 振り仮名 --> 
+          <tr>
+            <td colspan="4" class="login-td-title">
+              フリガナ
+            </td>
+            <td>
+              <%= f.label "（セイ）"%>
+            </td>
+            <td colspan="4">
+              <%= f.text_field :last_name_kana, class: "" %>
+            </td>
+            <td>
+              <%= f.label "（メイ）"%>
+            </td>
+            <td colspan="4">
+              <%= f.text_field :first_name_kana, class: "" %>
+            </td>
+          </tr>
+
+            <!-- メールアドレス --> 
+          <tr>
+            <td colspan="4" class="login-td-title">
+             メールアドレス 
+            </td>
+            <td>
+            </td>
+            <td colspan="4">
+              <%= f.email_field :email, class: "" %>
+           </td>
+            <td>
+            </td>
+            <td colspan="4">
+            </td>
+          </tr>
+            <!-- 郵便番号 -->
+          <tr>
+            <td colspan="4" class="login-td-title">
+             郵便番号 （ハイフン無し）
+            </td>
+            <td>
+            </td>
+            <td colspan="4">
+              <%= f.text_field :zip_code, class: "" %>
+           </td>
+            <td>
+            </td>
+            <td colspan="4">
+            </td>
+          </tr>
+            <!-- 住所 -->
+            <tr>
+              <td colspan="4" class="login-td-title">
+                住所  
+              </td>
+              <td>
+              </td>
+              <td colspan="4">
+                <%= f.text_field :address, class: "" %>
+              </td>
+              <td>
+              </td>
+              <td colspan="4">
+              </td>
+          </tr>
+
+            <!-- 電話番号　-->
+            <tr>
+              <td colspan="4" class="login-td-title">
+                電話番号 （ハイフン無し）
+              </td>
+              <td>
+              </td>
+              <td colspan="4">
+                <%= f.text_field :phone_number, class: "" %>
+              </td>
+              <td>
+              </td>
+              <td colspan="4">
+              </td>
+            </tr>
+
+        </table>
+
+            <div class="actions">
+              <%= f.submit "Sign up", class: "btn btn-success m-auto col-6" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+
+    <div class="container">
+      <h4>既に登録済みの方</h4>
+      <p><%= link_to "こちら", new_end_user_session_path %> からログインしてください</p>
+    </div>

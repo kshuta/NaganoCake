@@ -1,0 +1,37 @@
+<div class="container">
+    <h2>注文情報入力</h2>
+    <% if flash[:notice] %>
+        <p class="notice"><%= flash[:notice] %></p>
+    <%end%>
+    <%= form_with model: @new_order, url: order_confirm_path, local: :true do |f|%>
+        <div class="container">
+            <h4>支払い方法</h4>
+                <%= radio_button_tag(:payment_method, 0, checked: true)%> クレジットカード
+                <%= radio_button_tag(:payment_method, 1)%> 銀行振込
+        </div>
+        <div class="container">
+            <h3>お届け先</h3>
+            <p><%= radio_button_tag(:address_flag, 0, checked: true) %> ご自身の住所</p>
+            <p><%= current_end_user.zip_code %> <%= current_end_user.address%> <%= current_end_user.last_name_kanji%><%=current_end_user.first_name_kanji%></p>
+            <% if @addresses.empty? %>
+            <p><%= radio_button_tag(:address_flag, 1, false, disabled: true)%>登録住所から選択</p>
+            <%else%>
+            <p><%= radio_button_tag(:address_flag, 1)%>登録住所から選択</p>
+            <%end%>
+
+            <p><%= f.collection_select :existing_address, @addresses, :id, :shipping_information %></p>
+
+            <p><%= radio_button_tag(:address_flag, 2) %> 新しいお届け先</p>
+            <p><%= f.label "郵便番号(ハイフンなし)"%> <%= f.text_field :zip_code%></p>
+            <p><%= f.label "住所"%> <%= f.text_field :address %></p>
+            <p><%= f.label "宛名"%> <%= f.text_field :recipient_name %></p>
+        </div>
+        <div class="d-flex justify-content-center">
+            <%= f.submit "確認画面へ進む"%>
+        </div>
+    <%end%>
+</div>
+         
+
+
+            
